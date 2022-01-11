@@ -7,13 +7,12 @@ class buildingInProgress : public QMainWindow
 {
     Q_OBJECT
 private:
-
+    QStatusBar *m_statusbar;
 public:
     buildingInProgress(QWidget *parent = nullptr);
-    ~buildingInProgress();
-
 private slots:
-    void tryToExit();
-    void cancelExit();
+//    void slot_changeStatusBar();
+signals:
+
 };
 #endif // BUILDINGINPROGRESS_H
