@@ -15,6 +15,8 @@ SOURCES += \
 HEADERS += \
     buildinginprogress.h
 
+TARGET = PsychoTesting
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -22,3 +24,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 FORMS += \
     form.ui
+
+RESOURCES += \
+    res.qrc

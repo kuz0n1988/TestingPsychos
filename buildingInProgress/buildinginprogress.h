@@ -8,10 +8,11 @@ class buildingInProgress : public QMainWindow
     Q_OBJECT
 private:
     QStatusBar *m_statusbar;
+    static const QList<QString> menu_menu_status;
 public:
     buildingInProgress(QWidget *parent = nullptr);
 private slots:
-//    void slot_changeStatusBar();
+    void slotChangeStatusBar();
 signals:
 
 };

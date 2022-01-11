@@ -9,12 +9,28 @@
 #include <QStatusBar>
 #include <QActionGroup>
 
+const QList<QString> buildingInProgress::menu_menu_status
+{
+    "Исследование основных свойств нервной системы",
+    "Диагностика готовности совершения реальных действий (решительности)",
+    "Исследование общих способностей (интеллект)",
+    "Диагностика умственного развития учащихся - подростков и юношей",
+    "Диагностика установки на социально желательное поведение",
+    "Выявление родительского отношения в связи с проблемами в воспитании детей",
+    "Исследование агрессивного поведения",
+    "Оценка склонности к риску",
+    "Определение степени эмоциональной напряженности у детей (с 12 лет)",
+    "Диагностика поведенческого фактора риска сердечно-сосудистых заболеваний"
+};
+
 buildingInProgress::buildingInProgress(QWidget *parent)
     : QMainWindow(parent)
 {
     // Рисуем главное окно
     resize(800, 600);
     setWindowTitle("Психологическое тестирование");
+    setWindowIcon(QIcon(":/ico/ico.png"));
+    setStatusBar(m_statusbar);
 
     // Программа делается по образу и подобию продукта МП Психологический центр " К А Т А Р С И С "
     // Пакет психодиагностических программ ТЕСТ Версия 1.0 Луганск 1992
@@ -23,8 +39,8 @@ buildingInProgress::buildingInProgress(QWidget *parent)
     // =====Меню: Меню=====
     QList<QAction*> menu_menu;
 
-
-    // Шапка для меню явно должна делаться совершенно не так. Но раз работает - менять не буду
+    // Шапка для меню явно должна делаться совершенно не так.
+    // Но эта срань работает как мне нужно, так что менять не буду
     QAction *menu_head = new QAction("    Методика                               \tОбъём   \tВремя");
     menu_head->setDisabled(true);
 
@@ -39,6 +55,7 @@ buildingInProgress::buildingInProgress(QWidget *parent)
     menu_menu.push_back (new QAction(" 9. Тест эмоциональной напряженности       \t30      \t    10"));
     menu_menu.push_back (new QAction("10. Тест Дженкинса                         \t61      \t    15"));
 
+    /*
     QList<QString> menu_menu_status;    // Подписи для статусбара
     menu_menu_status.push_back("Исследование основных свойств нервной системы");
     menu_menu_status.push_back("Диагностика готовности совершения реальных действий (решительности)");
@@ -50,10 +67,9 @@ buildingInProgress::buildingInProgress(QWidget *parent)
     menu_menu_status.push_back("Оценка склонности к риску");
     menu_menu_status.push_back("Определение степени эмоциональной напряженности у детей (с 12 лет)");
     menu_menu_status.push_back("Диагностика поведенческого фактора риска сердечно-сосудистых заболеваний");
+    */
 
     QAction *app_exit                  = new QAction("Выход из программы");
-
-
 
     // Формируем главное меню
     QMenu *mainMenu;
@@ -78,5 +94,10 @@ buildingInProgress::buildingInProgress(QWidget *parent)
     // ======не забыть назначить горячую клавишу F1============
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+}
 
+void buildingInProgress::slotChangeStatusBar()
+{
+    QString temp = ((QAction*)sender())->text();
+    m_statusbar->showMessage(temp);
 }
