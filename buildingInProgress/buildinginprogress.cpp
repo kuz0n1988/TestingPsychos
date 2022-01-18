@@ -26,6 +26,7 @@ const QList<QString> buildingInProgress::menu_menu_status
 buildingInProgress::buildingInProgress(QWidget *parent)
     : QMainWindow(parent)
 {
+    m_statusbar = new QStatusBar(this);
     // Рисуем главное окно
     resize(800, 600);
     setWindowTitle("Психологическое тестирование");
@@ -55,19 +56,10 @@ buildingInProgress::buildingInProgress(QWidget *parent)
     menu_menu.push_back (new QAction(" 9. Тест эмоциональной напряженности       \t30      \t    10"));
     menu_menu.push_back (new QAction("10. Тест Дженкинса                         \t61      \t    15"));
 
-    /*
-    QList<QString> menu_menu_status;    // Подписи для статусбара
-    menu_menu_status.push_back("Исследование основных свойств нервной системы");
-    menu_menu_status.push_back("Диагностика готовности совершения реальных действий (решительности)");
-    menu_menu_status.push_back("Исследование общих способностей (интеллект)");
-    menu_menu_status.push_back("Диагностика умственного развития учащихся - подростков и юношей");
-    menu_menu_status.push_back("Диагностика установки на социально желательное поведение");
-    menu_menu_status.push_back("Выявление родительского отношения в связи с проблемами в воспитании детей");
-    menu_menu_status.push_back("Исследование агрессивного поведения");
-    menu_menu_status.push_back("Оценка склонности к риску");
-    menu_menu_status.push_back("Определение степени эмоциональной напряженности у детей (с 12 лет)");
-    menu_menu_status.push_back("Диагностика поведенческого фактора риска сердечно-сосудистых заболеваний");
-    */
+    for(int i = 0; i < menu_menu.size(); ++i)
+        connect(menu_menu[i], &QAction::hovered,
+                this,      &buildingInProgress::slotChangeStatusBar);
+
 
     QAction *app_exit                  = new QAction("Выход из программы");
 
@@ -93,7 +85,6 @@ buildingInProgress::buildingInProgress(QWidget *parent)
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // ======не забыть назначить горячую клавишу F1============
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 }
 
 void buildingInProgress::slotChangeStatusBar()

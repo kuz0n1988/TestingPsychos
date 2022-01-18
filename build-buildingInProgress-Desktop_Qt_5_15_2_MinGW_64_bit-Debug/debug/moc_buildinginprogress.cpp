@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_buildingInProgress_t {
     QByteArrayData data[3];
-    char stringdata0[41];
+    char stringdata0[40];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,11 +33,11 @@ struct qt_meta_stringdata_buildingInProgress_t {
 static const qt_meta_stringdata_buildingInProgress_t qt_meta_stringdata_buildingInProgress = {
     {
 QT_MOC_LITERAL(0, 0, 18), // "buildingInProgress"
-QT_MOC_LITERAL(1, 19, 20), // "slot_changeStatusBar"
-QT_MOC_LITERAL(2, 40, 0) // ""
+QT_MOC_LITERAL(1, 19, 19), // "slotChangeStatusBar"
+QT_MOC_LITERAL(2, 39, 0) // ""
 
     },
-    "buildingInProgress\0slot_changeStatusBar\0"
+    "buildingInProgress\0slotChangeStatusBar\0"
     ""
 };
 #undef QT_MOC_LITERAL
@@ -70,7 +70,7 @@ void buildingInProgress::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         auto *_t = static_cast<buildingInProgress *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->slot_changeStatusBar(); break;
+        case 0: _t->slotChangeStatusBar(); break;
         default: ;
         }
     }

@@ -13,6 +13,7 @@ public:
     buildingInProgress(QWidget *parent = nullptr);
 private slots:
     void slotChangeStatusBar();
+
 signals:
 
 };
