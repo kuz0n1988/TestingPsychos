@@ -9,11 +9,13 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    logfile.cpp \
     main.cpp \
     buildinginprogress.cpp
 
 HEADERS += \
-    buildinginprogress.h
+    buildinginprogress.h \
+    logfile.h
 
 TARGET = PsychoTesting
 

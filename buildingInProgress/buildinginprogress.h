@@ -3,11 +3,13 @@
 
 #include <QMainWindow>
 
+class QLabel;
+
 class buildingInProgress : public QMainWindow
 {
     Q_OBJECT
 private:
-    QStatusBar *m_statusbar;
+    QLabel                     *m_statusbar;
     static const QList<QString> menu_menu_status;
 public:
     buildingInProgress(QWidget *parent = nullptr);

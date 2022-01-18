@@ -1,5 +1,7 @@
 #include "buildinginprogress.h"
 
+#include <QDebug>
+#include <QtWidgets>
 #include <QTextStream>  // для stdout (только для прототипов и заглушек)
 #include <QApplication> // в основном для qApp QApplication::auit
 #include <QAction>
@@ -26,12 +28,12 @@ const QList<QString> buildingInProgress::menu_menu_status
 buildingInProgress::buildingInProgress(QWidget *parent)
     : QMainWindow(parent)
 {
-    m_statusbar = new QStatusBar(this);
+    m_statusbar = new QLabel();
     // Рисуем главное окно
     resize(800, 600);
     setWindowTitle("Психологическое тестирование");
     setWindowIcon(QIcon(":/ico/ico.png"));
-    setStatusBar(m_statusbar);
+    statusBar()->addWidget(m_statusbar);
 
     // Программа делается по образу и подобию продукта МП Психологический центр " К А Т А Р С И С "
     // Пакет психодиагностических программ ТЕСТ Версия 1.0 Луганск 1992
@@ -57,8 +59,11 @@ buildingInProgress::buildingInProgress(QWidget *parent)
     menu_menu.push_back (new QAction("10. Тест Дженкинса                         \t61      \t    15"));
 
     for(int i = 0; i < menu_menu.size(); ++i)
+    {
+        menu_menu[i]->setObjectName("menu " + QString::number(i));
         connect(menu_menu[i], &QAction::hovered,
                 this,      &buildingInProgress::slotChangeStatusBar);
+    }
 
 
     QAction *app_exit                  = new QAction("Выход из программы");
@@ -82,6 +87,7 @@ buildingInProgress::buildingInProgress(QWidget *parent)
     mainMenu = menuBar()->addMenu("Опции");
     mainMenu = menuBar()->addMenu("F1 Помощь");
 
+
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // ======не забыть назначить горячую клавишу F1============
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -89,6 +95,18 @@ buildingInProgress::buildingInProgress(QWidget *parent)
 
 void buildingInProgress::slotChangeStatusBar()
 {
-    QString temp = ((QAction*)sender())->text();
-    m_statusbar->showMessage(temp);
+    // как же убого оно выглядит :(
+    QString temp = ((QAction*)sender())->objectName();
+
+    if(temp.contains("menu"))
+    {
+        temp.remove(0, 5);
+        int index = temp.toInt();
+        qDebug() << index << menu_menu_status[index];
+        m_statusbar->setText(menu_menu_status[index]);
+    }
+    if(temp.contains("[EREASE]"))
+    {
+        m_statusbar->clear();
+    }
 }
